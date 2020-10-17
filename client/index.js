@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style/style.css'
-import {Router, Route, useHistory, hashHistory, IndexRoute} from 'react-router'
+import {Router, Route, hashHistory, IndexRoute} from 'react-router'
 import ApolloClient from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import SongList from './components/SongList';
