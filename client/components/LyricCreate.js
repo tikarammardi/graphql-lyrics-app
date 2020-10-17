@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { compose, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
  class LyricCreate extends Component {
 constructor(props){
-    super(props)
-    this.state = {content: ''}
+    super(props);
+    this.state = {content: ''};
     this.onSubmit = this.onSubmit.bind(this);
 }
 
@@ -16,8 +16,8 @@ constructor(props){
                content: this.state.content,
                songId: this.props.songId
            }
-       })
-       this.setState({content: ''})
+       });
+       this.setState({content: ''});
    }
     render() {
        
