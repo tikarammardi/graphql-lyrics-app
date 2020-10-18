@@ -7,6 +7,7 @@ import LyricList from './LyricList';
 
  const SongDetail =(props)=> {
 
+    console.log('props,', props)
      
         const {song} = props.data;
         const {params} = props;
