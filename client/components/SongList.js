@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-
-import { compose, graphql } from 'react-apollo';
+import React from 'react';
+import {  graphql } from 'react-apollo';
 import {Link} from 'react-router'
 import fetchSongsQuery from '../queries/fetchSongs'
 import deleteSong from '../queries/deleteSong';
-import { mutations } from 'apollo-client/mutations/store';
 
-class SongList extends Component {
-onSongDelete  (id){
-  this.props.mutate({
+
+const SongList =(props) =>  {
+
+const onSongDelete =  (id) =>{
+  props.mutate({
     variables:{id},
-  }).then(() => this.props.data.refetch())
+  }).then(() => props.data.refetch())
 }
 
-  renderSongs() {
-    return this.props.data.songs.map(({id,title}) => {
+  const renderSongs = ()=> {
+    return props.data.songs.map(({id,title}) => {
       return (
         <li key={id} className='collection-item'>
           <Link to={`/songs/${id}`}>
@@ -23,26 +23,26 @@ onSongDelete  (id){
        
           <i 
           className='material-icons'
-          onClick={()=> this.onSongDelete(id)}
+          onClick={()=> onSongDelete(id)}
           >delete</i>
         </li>
       );
     });
   }
 
-  render() {
+  
     
     return (
       <div>
       <ul className='collection'>
-        {this.props.data.loading ? 'Loading....' : this.renderSongs()}
+        {props.data.loading ? 'Loading....' : renderSongs()}
       </ul>
       <Link to="songs/new"className='btn-floating btn-large red right'>
         <i className='material-icons'>add</i>
          </Link>
       </div>
     );
-  }
+  
 }
 
 
