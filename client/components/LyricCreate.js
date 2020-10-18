@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+import React, { useState } from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+ const  LyricCreate = (props)=> {
+     const [content, setContent] = useState('');
+     const onSubmit = (event) => {
+         event.preventDefault();
+=======
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -7,10 +16,30 @@ constructor(props){
     this.state = {content: ''};
     this.onSubmit = this.onSubmit.bind(this);
 }
+>>>>>>> c47bd1f056f4c4793c25547ec4ad4f314635a6b3
 
-   onSubmit(event){
-       event.preventDefault();
 
+<<<<<<< HEAD
+         props.mutate({
+             variables: {
+                 content: content,
+                 songId: props.songId
+             }
+         });
+         setContent('');
+     };
+
+
+     return (
+         <form onSubmit={onSubmit}>
+             <label>Add a Lyrics</label>
+             <input
+             value={content}
+             onChange={event => setContent(event.target.value)}
+         />
+         </form>
+     )
+=======
        this.props.mutate({
            variables: {
                content: this.state.content,
@@ -30,8 +59,9 @@ constructor(props){
                /> 
             </form>
         )
+>>>>>>> c47bd1f056f4c4793c25547ec4ad4f314635a6b3
     }
-}
+
 
 const mutation = gql`
 mutation AddLyricToSong($content: String, $songId: ID){
