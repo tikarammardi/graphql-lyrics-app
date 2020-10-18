@@ -1,27 +1,22 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import gql from 'graphql-tag'
-import { compose, graphql } from 'react-apollo'
-import {Link, hashHistory, useHistory} from 'react-router'
+import {  graphql } from 'react-apollo'
+import {Link, hashHistory} from 'react-router'
 import fetchSongsQuery from '../queries/fetchSongs'
 
- class SongCreate extends Component {
-    constructor(props){
-        super(props)
-        this.state= {
-            title: ''
-        }
+ const SongCreate =({mutate}) => {
+   
 
-        this.onSubmit = this.onSubmit.bind(this);
-    }
+    const [title, setTitle] = useState('');
 
-       onSubmit (event){
+       const onSubmit = (event) =>{
         event.preventDefault();
 
     
 
-        this.props.mutate({
+        mutate({
             variables: {
-                title: this.state.title
+                title
             },
             refetchQueries: [{
                 query: fetchSongsQuery                
@@ -35,20 +30,20 @@ import fetchSongsQuery from '../queries/fetchSongs'
     }
 
 
-    render() {
+    
         return (
             <div>
                 <Link to="/"> Back</Link>
                 <h2>Create new song</h2>
                 
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={onSubmit}>
                     <label>Songle Title:</label>
-                    <input type='text'onChange={(event)=>this.setState({title: event.target.value})} value={this.state.title}/>
+                    <input type='text'onChange={(event)=>setTitle(event.target.value)} value={title}/>
                     <button>Add</button>
                 </form>
             </div>
         )
-    }
+    
 }
 
 const mutation = gql`
